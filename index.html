@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Arvind Kannan</title>
+
+		<link rel="stylesheet" href="styles/vendor/bootstrap-3.2.0/bootstrap.css">
+		<link rel="stylesheet" href="styles/css/main.css">	
+	</head>
+	
+	<body ng-controller="resumeController">
+		<!--vendor-->
+		<script src="scripts/vendor/jquery-2.1.0/jquery.js"></script>
+		<script src="scripts/vendor/jquery-ui-1.10.4.custom/jquery-ui.js"></script>
+		
+		<script src="scripts/resume-controller.js"></script>
+
+		<div id="mainDiv">
+			<div id="headerDiv" style="height: 20%; background-color: gold">
+				<div class="img">
+					<img src="images/lakshmi.jpeg" alt="Smiley face" class="img-circle" width="50%">
+				</div>
+				<div>
+					<div class="aboutMe">
+						<h3>About Me</h3>
+						<h5>Though I am a front-end developer by day, I have put pen to paper during a design process, been completely lost in a full stack environment, and have even worn the entrepreneurship hat.</h5>
+					</div>
+					<div>
+						<a href="#" id="workLink" class="hrefPadding" data-page="workDiv">Work</a>
+						<a href="#" id="projectsLink" class="hrefPadding" data-page="projectsDiv">Projects</a>
+						<a href="#" id="resumeLink" class="hrefPadding" data-page="resumeDiv">Resume</a>
+						<a href="#" id="contactLink" class="hrefPadding" data-page="contactDiv">Contact</a>
+					</div>
+				</div>
+			</div>
+			<div id="bodyDiv" class="bodyDiv">
+				<div id="workDiv" class="mainContent">
+					<h5>I am an alumnus of SFU's School of Interactive Arts + Technology program, graduating with a Bachelors of Science with a major in Media Arts. Currently residing in Vancouver, B.C, Canada, I'm looking to grow professionally and personally anywhere outside of the country.</h5>
+				</div>
+				<div id="projectsDiv" class="mainContent toggleDiv">
+					<h3>I want to be involved in projects that I can be proud of, join an amazing team, and advance my design and development career. Take some time to look at my work, credentials, and if you're interested in helping me make this happen, let's get in touch.</h3>
+				</div>
+				<div id="resumeDiv" class="mainContent toggleDiv">
+					<div>Job Seekers & Professionals
+						Build a Resume
+						Edit my Resume
+						Search Jobs
+						Create Account
+						Sign In
+					</div>
+				</div>
+				<div id="contactDiv" class="mainContent toggleDiv">
+					<h3>CURRENTLY AVAILABLE FOR CONTRACT OR FULL-TIME WORK. AND WOULD LOVE TO HEAR FROM YOU</h3>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

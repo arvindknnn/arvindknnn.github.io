@@ -1,0 +1,36 @@
+.imgRoundedCorners {
+    /*width:40%;*/
+    height:40%;
+    border-radius:50%;
+    overflow:hidden;
+}
+
+.hrefPadding {
+	padding-right: 20px;
+}
+
+.aboutMe {
+	color: black;
+	padding: 20px;
+}
+
+.img {
+	float: left;
+	padding: 10px;
+}
+
+.bodyDiv{
+	min-height: 600px;
+	border: 2px solid blue;
+	margin: 100px;
+}
+
+.mainContent {
+	height:100%; 
+	width:90%;
+	margin: 30px;	
+}
+
+.toggleDiv {
+	display: none;
+}
