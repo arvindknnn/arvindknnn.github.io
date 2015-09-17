@@ -1,3 +1,14 @@
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;	
+}
+
+
+.app-header {
+    font-weight: 100;
+    font-size: 15px;
+
+}
+
 .imgRoundedCorners {
     /*width:40%;*/
     height:40%;
@@ -5,32 +16,115 @@
     overflow:hidden;
 }
 
-.hrefPadding {
+.nav-link {
 	padding-right: 20px;
 }
 
+.app-bottom-section {
+	/*overflow-y: auto;*/
+	z-index: 5000;
+	background-color: #ffffff;
+}
+
 .aboutMe {
-	color: black;
-	padding: 20px;
+	/*color: black;*/
+	/*padding: 20px;*/
+	/*padding-top: 40px;*/
 }
 
 .img {
 	float: left;
 	padding: 10px;
+	margin-top:35px;
 }
 
 .bodyDiv{
-	min-height: 600px;
+	padding-top: 10px;
+	background-color: #ffffff;
+/*	min-height: 600px;
 	border: 2px solid blue;
-	margin: 100px;
+	margin: 100px;*/
 }
 
 .mainContent {
-	height:100%; 
-	width:90%;
-	margin: 30px;	
+	height: 100%; 
+	/*width: 100%;*/
+
+}
+
+.main-content-in-focus {
+/*	display: flex !important;
+	justify-content: center;	*/
+}
+
+.resumeDiv .resume-item-row {
+	width: 50% !important;
 }
 
 .toggleDiv {
 	display: none;
 }
+
+.project-content {
+	display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.bodyDiv .row {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+
+}
+
+.device-icon {   
+	width: 50px;
+    height: 50px;
+    margin: 10px;
+ }
+
+/* Navigation Bar Styles*/
+
+.app-nav {
+	/*top: 250px;*/
+	border-color: rgba(25, 18, 18, 0) !important;
+
+}
+
+#app-collapsible-navbar {
+	 display: flex !important;
+    justify-content: center;
+}
+
+/*.app-nav {
+	background-color: #fa4b2a !important;
+	border-color: rgba(25, 18, 18, 0) !important;
+	border-radius: 0px !important;
+}
+
+.app-nav a {
+	color: #ffffff !important;
+	border-right: 1px solid #fa4b2a !important;
+    border-left: 1px solid #fa4b2a !important; 
+}
+
+
+
+.app-nav a:hover {
+	color: #fa4b2a !important;
+    background-color: #ffffff !important;
+}
+
+.app-nav .active a {
+	color: #fa4b2a !important;
+    background-color: #ffffff !important;
+    border-right: 1px solid #ffffff !important;
+    border-left: 1px solid #ffffff !important;
+}
+
+.app-nav .active a:hover, .app-nav .active a:focus {
+	color: #ffffff !important;
+    background-color: #fa4b2a !important;
+}*/
+
+/* End Navigation Bar Styles*/
