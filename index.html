@@ -11,7 +11,7 @@
 		<header class="app-header">
 			<div style="display: flex; justify-content: center; height: 250px; background-color: #940431; color: #ffffff;">
 				<div style="width: 25%; height: 100%; position: relative; float: left; display: flex; justify-content: center">
-					<img src="images/ak.jpeg" alt="Smiley face" class="img-circle" style="margin:8px 0px;">			
+					<img src="images/ak.jpeg" alt="Smiley face" class="img-circle img-responsive" style="margin:8px 0px;">			
 				</div>
 				<div style="width: 75%; height: 100%; position: relative; float: left; padding: 25px">
 					<h3>Arvind Kannan</h3>
@@ -22,6 +22,7 @@
 			</div>
 		</header>
 		<div class="app-bottom-section">
+		<div class="nav-container">
 			<nav class="navbar navbar-default app-nav ">
 				<div class="container-fluid">
 			    <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,11 +36,6 @@
 			    	</div>		    
 				    <div class="collapse navbar-collapse" id="app-collapsible-navbar">
 				    	<ul class="nav navbar-nav">		        
-<!-- 					        <li>
-					        	<a href="#" id="workLink" class="nav-link" data-page="workDiv">
-					        		Work
-					        	</a>
-					        </li> -->
 					        <li class="active">
 					        	<a href="#" id="resumeLink" class="nav-link" data-page="resumeDiv">
 					        		Resume
@@ -58,114 +54,28 @@
 				    	</ul>
 				    </div>
 			  	</div>
-			</nav>
-	<!-- MAIN BODY-->
-			<div id="bodyDiv" class="bodyDiv">
-				<div id="resumeDiv" class="mainContent main-content-in-focus container">
-					<div class-"row resume-item-row">
-						<h3 class="col-md-5">
-							Profile
-						</h3>
-						<div class="col-md-7 container-fluid" style="margin-bottom:20px">
-							<div class="row">
-								<div class="col-md-12">
-									<p>
-										My experience spans application development on various platforms. I have worked in front-end development using web technologies such as HTML5, CSS3, Responsive design, Javascript, jQuery, KnockoutJS, AngularJS, AJAX etc. I have also worked on proprietary development platform such as BMC Remedy Action Request (AR) System. In addition, I have varied non-mainstream skills that I’ve had to pick up as needed - I have written compact java widgets that plugin to BMC Remedy AR System to make it versatile; I have written database stored procedures to accomplish certain tasks; In short, I have great experience scaling my knowledge to the need and keeping up with ever growing technology.
-									</p>
-								</div>
-							</div>														
-						</div>
-					</div>				
-					<div class-"row resume-item-row">
-						<h3 class="col-md-5">
-							Technical Skills
-						</h3>
-						<div class="col-md-7 container-fluid" style="margin-bottom:20px">
-							<div class="row">
-								<div class="col-md-12">
-									HTML 5, CSS 3, JavaScript
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									jQuery, Knockout.js, AngularJS, Bootstrap
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									Gulp, Git/GitHub, Sublime Text, WebStorm
-								</div>
-							</div>														
-						</div>
-					</div>
-					<div class-"row resume-item-row">
-						<h3 class="col-md-5">
-							Work Experience
-						</h3>
-						<div class="col-md-7 container-fluid" style="margin-bottom:20px">
-							<div class="row">
-								<div class="col-md-12">
-									<h5>UI Developer, BMC Software, CA – 2014-2015</h5>
-									<span>
-										Worked in a massive development effort to redesign BMC Applications
-									</span><br>
-									<span>
-										Developed fresh and new UI using AngularJS, Bootstrap, jQuery, REST
-									</span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h5>Senior Consultant, BMC Software, CA – 2013-2014</h5>
-									<span>
-										Provided consultancy to customers on BMC Remedy Applications
-									</span><br>
-									<span> Developed custom UI using HTML5, CSS3, JavaScript and jQuery </span>
-									<span><br>
-										Developed java plugins to hook up third party applications with BMC Remedy
-									</span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h5>UI Developer, Prosoft IT Services, CA – 2010-2013</h5>
-									<span>	
-										Developed  modern Web UI layer using HTML, CSS and Javascript to replace legacy UI
-									</span><br>
-									<span> 
-										Hooked up modern UI to legacy BMC AR System backend applications
-									</span>
-								</div>							
-							</div>	
-							<div class="row">
-								<div class="col-md-12">
-									<h5>IT Analyst, TATA Consultancy Services – 2005-2010</h5>
-									<span>	
-										Designed and developed applications for IT Service Management, Billing and Reporting based on BMC AR System Platform
-									</span>
-								</div>
-							</div>																					
-						</div>
-					</div>
-					<div class-"row resume-item-row">
-						<h3 class="col-md-5">
-							Education
-						</h3>
-						<div class="col-md-7 container-fluid" style="margin-bottom:20px">
-							<div class="row">
-								<div class="col-md-12">
-									<h5>Visvesvaraya Technological University</h5>
-									<span>
-										Bachelor’s in Engineering	, Electrical & Electronics
-									</span>
-								</div>
-							</div>										
-						</div>
-					</div>										
-			</div>
+			</nav>			
 		</div>
+
+	<!-- MAIN BODY-->
+		<div id="bodyDiv" class="bodyDiv"></div>
+
+
+	<!--END MAIN BODY-->
+
+	<!--DEVICE TYPE DETECTION-->
+	<div class="device-detective">
+		<div class="hidden-xs device"></div>
+		<div class="hidden-sm device"></div>
+		<div class="hidden-md device"></div>
+		<div class="hidden-lg device"></div>
+	</div>
+	<!--END DEVICE TYPE DETECTION-->
+
+
 		<script src="scripts/vendor/jquery-2.1.0/jquery.js"></script>
 		<script src="scripts/vendor/jquery-ui-1.10.4.custom/jquery-ui.js"></script>
+		<script src="scripts/vendor/jquery-scrollTo.js"></script>		
   		<script async="" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 		
 		<script src="scripts/resume-Controller.js"></script>
 	</body>
