@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="initial-scale=1.0, user-scalable=no" name="viewport">
+  <meta charset="utf-8">
+
+  <title>AK's Custom Location Search</title>
+  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="http://css-spinners.com/css/spinner/ball.css" type="text/css">
+  <link href="css/thirdparty/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/mapstyles.css" rel="stylesheet" type="text/css">
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <script src="scripts/thirdparty/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="scripts/thirdparty/knockout-3.3.0.js" type="text/javascript"></script>
+  <script src="scripts/thirdparty/ko-mapping-2.4.1.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <form data-bind="visible: mapLoaded">
+    <input class="controls ml-searchbox hidden" data-bind="textInput: searchString" id="pac-input" placeholder="Search for a location..." type="text">
+  </form>
+
+      
+ <!--  <img src="images/gps.png" class="gps-icon-sm img-responsive hidden-md hidden-lg" alt="Current Location" data-bind="click: function(){app.maps.map.setCenter(app.maps.geo);}, visible: mapLoaded">
+  <img src="images/gps.png" class="gps-icon-md img-responsive hidden-xs hidden-sm" alt="Current Location" data-bind="click: function(){app.maps.map.setCenter(app.maps.geo);}, visible: mapLoaded"> -->
+
+
+  <!-- Section for Device Type Detection -->
+  <div id"detect-device">
+    <div id="detect-xs-device" class="visible-xs-inline"></div>
+    <div id="detect-sm-device" class="visible-sm-inline"></div>
+    <div id="detect-md-device" class="visible-md-inline"></div>
+    <div id="detect-lg-device" class="visible-lg-inline"></div>
+  </div>
+  <!-- END Section for Device Type Detection -->
+
+ <!--  </section> -->
+ <section class="map-container">
+
+ <!-- Section for Medium and Large Devices -->
+
+   <div class="search-results-pane hidden-sm hidden-xs" data-bind="css: getPanelClass">
+    <div class="logo-wrapper" data-bind="css: getPanelClass">
+      <img alt="App Logo" src="/images/logo.png" class="app-logo img-responsive">
+<!--       <div class="app-caption">
+        <span class="app-caption-span">
+          Search Away!
+        </span>
+      </div> -->
+    </div>
+    <div class="results-container" data-bind="template: { name: 'results-template', foreach: googlePlaces }">        
+    </div>   
+  </div> 
+
+ <!-- END Section for Medium and Large Devices -->
+
+  <div id="map">
+    <div data-bind="{ifnot: mapLoaded}" class="wait-spinner-wrapper">
+      <div class="ball-loader wait-spinner"> 
+        Loading…       
+      </div>
+<!--       <div class="wait-spinner-text">
+        Getting your current location...
+      </div> -->
+    </div>
+  </div>   
+ </section>
+
+ <!-- Section for Mobile Devices -->
+
+  <section class="search-list hidden hidden-md hidden-lg">
+    <div data-bind="if: searchString().length && googlePlaces">
+      <button aria-controls="searchResultsContainer" aria-expanded="false" class="btn btn-primary btn-search-results" data-target="#searchResultsContainer" data-toggle="collapse" type="button">
+        <span data-bind="text: resultsLen">      
+        </span> 
+          Search Result(s) Found
+      </button>
+    </div>
+  </section>
+
+  <div class="collapse search-results-container hidden-md hidden-lg" id="searchResultsContainer">
+    <div class="well" data-bind="template: { name: 'results-template', if: searchString().length && googlePlaces,foreach: googlePlaces }">
+    </div>
+  </div>
+
+  <!-- END Section for Mobile Devices -->
+
+  <!-- Modal -->
+
+  <div aria-labelledby="locInfoModalLabel" class="modal fade locInfoModal"  id="locInfoModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">
+              &times;
+            </span>
+          </button>
+          <div>
+            <img alt="Icon" class="img-responsive loc-icon" data-bind="attr:{ src: modalHeader.icon()}">
+            <h4 class="modal-title" data-bind="text: modalHeader.title()" id="locInfoModalLabel">
+            </h4>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="tab-yelp active" role="presentation">
+                <a aria-controls="Yelp" data-toggle="tab" href="#yelp" role="tab">
+                  Yelp
+                </a>
+              </li>
+              <li class="tab-wiki" role="presentation">
+                <a aria-controls="wiki" data-toggle="tab" href="#wiki" role="tab">
+                  Wikipedia
+                </a>
+              </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active in fade" id="yelp" role="tabpanel">
+                <div class="tab-child-wide yelp-fallback" data-bind="if: modalContent.yelp.error">
+                  <span data-bind="text: modalContent.yelp.fallback">                  
+                  </span>
+                </div>
+                <div data-bind="ifnot: modalContent.yelp.error">
+                  <div class="tab-child">
+                    <img alt="Location Image" class="yelp-img img-responsive" data-bind="attr:{ src: modalContent.yelp.image}">
+                  </div>
+                  <div class="tab-child yelp-location" data-bind="html: modalContent.yelp.address">                  
+                  </div>
+                  <div class="tab-child-wide yelp-rating">
+                    <div class="yelp-rating">
+                      <img alt="Yelp Rating Image" class="img-responsive" data-bind="attr:{src: modalContent.yelp.ratingImg}">
+                      <span> 
+                        Based on 
+                      </span>
+                      <span data-bind="text: modalContent.yelp.totalReviews">                      
+                      </span>
+                    </div>
+                    <div style="margin: 5px 0px;">
+                      <img alt="Yelp Logo" class="img-src loc-icon" src="images/yelp.png">
+                      <a target="new" data-bind="attr:{href: modalContent.yelp.url}" style="position: relative;left: 5px;top: 3px;">
+                        More on Yelp.com!
+                      </a>                
+                    </div>              
+                    <div class=" yelp-rating">
+                      <img alt="Yelp Reviewer Image" class="img-responsive" data-bind="attr:{src: modalContent.yelp.snippetImg}">
+                      <div data-bind="text: modalContent.yelp.snippetTxt">                      
+                      </div>                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" data-bind="html:modalContent.wiki()" id="wiki" role="tabpanel">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal" type="button">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- END Modal -->
+
+  <script id="results-template" type="text/html">
+  <div data-bind="click:$parent.getPlaceInfo">
+    <div class="search-result-data" data-bind="event:{mouseout: function(data,event){$parent.handleResultHover(data,event,$index)}, mouseover: function(data,event){$parent.handleResultHover(data,event,$index)}},mouseoutBubbling: false, mouseoverBubbling: false, css: itemCss" data-toggle="modal" data-target="#locInfoModal">
+      <img data-bind="attr:{ src: icon}" class="img-responsive loc-icon" alt="Icon">
+      <div class='icon-container'>
+        <h4 data-bind="text: name">
+        </h4>
+        <div data-bind="text: formatted_address">
+        </div>
+      </div>
+    </div>
+   </div> 
+  </script> 
+  <script src="scripts/views/maps.js"></script> 
+  <script src="scripts/service.js"></script>
+  <script src="scripts/views/locinfo.js"></script> 
+  <script async="" defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=app.init"></script> 
+  <script async src="scripts/thirdparty/jquery.jsonp-2.4.0.min.js" type="text/javascript"></script>
+  <script async src="node_modules/oauth-signature/dist/oauth-signature.js" type="text/javascript"></script> 
+  <script src="scripts/model/appModel.js"></script> 
+  <script src="scripts/app.js"></script>
+</body>
+</html>
