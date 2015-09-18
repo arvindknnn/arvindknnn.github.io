@@ -9,7 +9,9 @@ $.fn.scrollTo = function( target, options, callback ){
   return this.each(function(){
     var scrollPane = $(this);
     var scrollTarget = (typeof settings.scrollTarget == "number") ? settings.scrollTarget : $(settings.scrollTarget);
-    var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
+    // var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
+    var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top - parseInt(settings.offsetTop);
+
     scrollPane.animate({scrollTop : scrollY }, parseInt(settings.duration), settings.easing, function(){
       if (typeof callback == 'function') { callback.call(this); }
     });

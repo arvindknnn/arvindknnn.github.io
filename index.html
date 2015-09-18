@@ -8,7 +8,34 @@
 		<link rel="stylesheet" href="styles/css/main.css">	
 	</head>	
 	<body>
-		<header class="app-header">
+
+		<!-- MOBILE HEADER-->
+		<div class="hidden-md hidden-lg">
+
+				<header class="app-header app-header-sm container-fluid">
+
+					<div style="height: 150px; background-color: #940431; color: #ffffff;" class="row">
+						<div style=" height: 100%;" class="col-sm-6 col-xs-6">
+							<img src="images/ak-sm.jpeg" alt="Smiley face" class="img-circle" style="margin:8px 0px;">			
+						</div>			
+						<h3 class="col-sm-6 col-xs-6">Arvind Kannan</h3>
+							<h5 class="col-xs-6 col-sm-6">Frontend Developer</h5>				
+
+					</div>
+				</header>					
+				<div class="container">
+					<div class="row">
+
+					<p class="col-xs-12 col-sm-12">I am a highly motivated frontend developer, passionate about building user interface that not only delivers functionality but is intuitive, interactive and pleasing to the user. I firmly believe that apps or websites that give precedence to brains over beauty belong in 1990s. One can never tell beauty from brains when looking at a great website!</p>
+					<p class="col-xs-12 col-sm-12">German Cars, French Cuisine and Japanese Business Ethics - All of these have one thing in common - Fantastic inner stuff presented in a much more sophisticated way. And that's how I believe, an application should be built too..</p>						
+					</div>				
+				</div>
+			
+		</div>
+
+		<!-- END MOBILE HEADER-->
+
+		<header class="app-header hidden-xs hidden-sm">
 			<div style="display: flex; justify-content: center; height: 250px; background-color: #940431; color: #ffffff;">
 				<div style="width: 25%; height: 100%; position: relative; float: left; display: flex; justify-content: center">
 					<img src="images/ak.jpeg" alt="Smiley face" class="img-circle img-responsive" style="margin:8px 0px;">			
@@ -21,6 +48,7 @@
 				</div>
 			</div>
 		</header>
+
 		<div class="app-bottom-section">
 		<div class="nav-container">
 			<nav class="navbar navbar-default app-nav ">
@@ -42,7 +70,7 @@
 					        	</a>
 					        </li>					        
 					        <li>
-					        	<a href="#" id="projectsLink" class="nav-link" data-page="projectsDiv">
+					        	<a href="#projectsDiv" id="projectsLink" class="nav-link" data-page="projectsDiv">
 					        		Projects
 					        	</a>      	
 					        </li>

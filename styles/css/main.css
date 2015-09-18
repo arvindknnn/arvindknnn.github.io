@@ -1,5 +1,6 @@
 body {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;	
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	/*margin-left: 15px;	*/
 }
 
 
@@ -7,6 +8,10 @@ body {
     font-weight: 100;
     font-size: 15px;
 
+}
+
+.app-header-sm {
+	margin: 55px 0px;
 }
 
 .imgRoundedCorners {
@@ -48,7 +53,7 @@ body {
 
 .mainContent {
 	height: 100%; 
-	margin-bottom: 100px;
+	margin-bottom: 30px;
 	/*width: 100%;*/
 
 }
@@ -111,19 +116,24 @@ body {
  }
 
 
+.projectsDiv:focus {
+	background-color: #ebebeb;
+}
+
 
 
 /* Navigation Bar Styles*/
 
-.app-nav {
-	/*top: 250px;*/
+/*.app-nav {
+	
 	border-color: rgba(25, 18, 18, 0) !important;
 
-}
+}*/
 
 .app-nav-fixed-top {
     position: fixed;
     top: 0px;
+    left: 0px;
     width: 100%;
     z-index: 9999;
     box-shadow: 1px 1px 1px 1px
@@ -133,10 +143,10 @@ body {
 	margin-bottom: 0px;
 }
 
-#app-collapsible-navbar {
+/*#app-collapsible-navbar {
 	 display: flex !important;
     justify-content: center;
-}
+}*/
 
 /*.app-nav {
 	background-color: #fa4b2a !important;
