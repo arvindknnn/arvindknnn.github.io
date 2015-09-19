@@ -33,10 +33,16 @@
          <p>The demo uses a custom Angular directive called akSlider ( Named after a great thinker...of course, that's me :/ ). The slider is still in the works from the standpoint of making it absolutely versatile. However, this is smooth and versatile enough to be a little more than MVP. It is a plug and play directive with configurable options. The directive comes with a css file that you can customize. Make it look the way you want!</p>           
           <i> The best part yet - It's smooth and performs at way, way above 60 fps!</i>
         </div>
+        <div>
+          <span class="zoom-left-panel">Works on: </span>
+          <img src="images/chrome.png" alt="Google Chrome">
+          <img src="images/edge.png" alt="Microsoft Edge"><br>
+          <span style="margin-left: 50px"><small><i>Firefox specific fixes under development</i></small></span>          
+        </div>
       </div>
       <div class="image-outer-container">
         <div class="image-wrapper">
-          <img alt="wall-e image" class="demo-img" src="images/wall-e.jpg" style="transform: scale({{zoomDemo.zoomValue}})">
+          <img alt="wall-e image" class="demo-img" src="images/wall-e.jpg" style="transform: scale({{zoomDemo.zoomValue}}); -webkit-transform: scale({{zoomDemo.zoomValue}})">
         </div>
       </div>
     </div>

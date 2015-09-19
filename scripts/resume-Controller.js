@@ -3,7 +3,7 @@
 $(function() {
 	var smallDevice = false,
  		navFixed= false,
-    	curPage = "resumeDiv",
+    	curPage = "#resume",
     	prevLink = $("#resumeLink"), 
      	lastScrollTop = 0,
     	mainContentTop = 0,
@@ -82,7 +82,9 @@ $(function() {
 			resonsiveProjectContent();
 		});
 
-    	$(".nav-link").click(function() {
+
+		$('a[href^="#"]').on('click', function(event) {
+
     		var offset = 0;
 			if(smallDevice){
 				$(".navbar-toggle").trigger("click");
@@ -90,18 +92,49 @@ $(function() {
 			}
 			else {
 				offset = 150;
-			}
+			}			
 
-			$("#"+curPage).removeClass("main-content-in-focus");  
-			$(prevLink).parent().removeClass("active");
-        	curPage=$(this).data("page");        
-			$('body').scrollTo("#"+curPage ,{duration: 1000, offsetTop : offset});
-			$("#"+curPage).addClass("main-content-in-focus");
-			prevLink = $(this);
-			$(prevLink).parent().addClass("active");
+    		// var target = $(this.href);
+    		var targetDiv = $(this).attr("href");
+    		var target = $(targetDiv);
 
-			return false;
-    	});
+    		if( target.length ) {
+        		event.preventDefault();
+
+        		$('html, body').animate({
+            		scrollTop: target.offset().top - offset
+        		}, 1000);
+
+				$(curPage).removeClass("main-content-in-focus"); 
+				target.addClass("main-content-in-focus");
+				$(prevLink).parent().removeClass("active");
+				curPage = targetDiv;
+				prevLink = $(this);
+				$(prevLink).parent().addClass("active");
+    		}
+		});
+
+
+   //  	$(".nav-link").click(function() {
+   //  		var offset = 0;
+			// if(smallDevice){
+			// 	$(".navbar-toggle").trigger("click");
+			// 	offset = 50;
+			// }
+			// else {
+			// 	offset = 150;
+			// }
+
+			// $("#"+curPage).removeClass("main-content-in-focus");  
+			// $(prevLink).parent().removeClass("active");
+   //      	curPage=$(this).data("page");        
+			// $('body').scrollTo("#"+curPage ,{duration: 1000, offsetTop : offset});
+			// $("#"+curPage).addClass("main-content-in-focus");
+			// prevLink = $(this);
+			// $(prevLink).parent().addClass("active");
+
+			// return false;
+   //  	});
 
 //SCROLL HANDLER
 		$(window).scroll(function(event){
