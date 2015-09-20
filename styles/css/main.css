@@ -1,13 +1,23 @@
 body {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+	font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
 	/*margin-left: 15px;	*/
+	font-size: 17px;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+
+    color: rgb(62, 61, 61) !important;
+}
 
 .app-header {
     font-weight: 100;
     font-size: 15px;
 
+}
+
+.app-header h3, .app-header h5, .app-header .h3, .app-header .h5 {
+	color: #ffffff !important;
 }
 
 .app-header-sm {
@@ -29,6 +39,7 @@ body {
 	/*overflow-y: auto;*/
 	z-index: 1000;
 	background-color: #ffffff;
+	color: #636363;
 }
 
 .aboutMe {
@@ -120,7 +131,14 @@ body {
 	background-color: #ebebeb;
 }
 
+#contact .row {
+	margin-bottom: 20px;
+}
 
+/*#contact .form-control {
+	width: 40%;
+    margin-left: 55px;
+}*/
 
 /* Navigation Bar Styles*/
 

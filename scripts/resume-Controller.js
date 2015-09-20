@@ -75,6 +75,32 @@ $(function() {
 	}
 
 
+	function setEmailResponse(messageCode) {
+
+			if (messageCode === 1) {
+				var messageResult = $("#contact .message-result");
+				messageResult.removeClass("hidden");
+				messageResult.removeClass("alert-danger");
+				messageResult.addClass("alert-success");
+				messageResult.text("Thanks for your message");
+				setTimeout(function() {
+					messageResult.addClass("hidden");
+				}, 5000);				
+			}
+
+			if (messageCode === -1) {
+				var messageResult = $("#contact .message-result");
+				messageResult.removeClass("alert-success");
+				messageResult.removeClass("hidden");
+				messageResult.addClass("alert-danger");
+				messageResult.text("Something snapped..your message was not sent. Please try calling me :)");
+				setTimeout(function() {
+					messageResult.addClass("hidden");
+				}, 5000);	
+			}		
+
+	}
+
 	function addListeners() {
 		
 		$(window).resize(function(){			
@@ -106,35 +132,11 @@ $(function() {
         		}, 1000);
 
 				$(curPage).removeClass("main-content-in-focus"); 
-				target.addClass("main-content-in-focus");
-				$(prevLink).parent().removeClass("active");
+				target.addClass("main-content-in-focus");				
 				curPage = targetDiv;
-				prevLink = $(this);
-				$(prevLink).parent().addClass("active");
     		}
 		});
 
-
-   //  	$(".nav-link").click(function() {
-   //  		var offset = 0;
-			// if(smallDevice){
-			// 	$(".navbar-toggle").trigger("click");
-			// 	offset = 50;
-			// }
-			// else {
-			// 	offset = 150;
-			// }
-
-			// $("#"+curPage).removeClass("main-content-in-focus");  
-			// $(prevLink).parent().removeClass("active");
-   //      	curPage=$(this).data("page");        
-			// $('body').scrollTo("#"+curPage ,{duration: 1000, offsetTop : offset});
-			// $("#"+curPage).addClass("main-content-in-focus");
-			// prevLink = $(this);
-			// $(prevLink).parent().addClass("active");
-
-			// return false;
-   //  	});
 
 //SCROLL HANDLER
 		$(window).scroll(function(event){
@@ -162,18 +164,6 @@ $(function() {
 				}
 			});
 
-		   	// if ((st + 200) >= sectionOffsetValues[0] && (st + 200) < sectionOffsetValues[1] - 150) {
-		   	// 	sectionScrollIndex = 0;
-		   	// }
-
-		   	// if ((st + 200) >= sectionOffsetValues[1] && (st + 200) < sectionOffsetValues[2] - 200) {
-		   	// 	sectionScrollIndex = 1;
-		   	// }
-
-		   	// if ((st - 200) >= $(this).height()) {
-		   	// 	sectionScrollIndex = 2;
-		   	// }	
-
 			$(".mainContent").each(function(index) {
 				if( index === sectionScrollIndex ) {
 					$(this).addClass("main-content-in-focus");
@@ -185,16 +175,48 @@ $(function() {
 			});
 
 			$("#app-collapsible-navbar  li").each(function(index){
-				if( index === sectionScrollIndex ) {
-					$(this).addClass("active");
+				if( index !== sectionScrollIndex ) {
+					$(this).removeClass("active");
 				}
 				else{
-					$(this).removeClass("active");
+					$(this).addClass("active");
 				}
 			});
 		});
 
 // END SCROLL HANDLER	
+		$(".btn-send-email").click( function() {
+			var data = {};
+			data.name = $(".txt-name").val();
+			data.email = $(".txt-email").val();
+			data.msg = $(".txt-msg").val();
+			var dataString = "name=" + data.name + "&email=" + data.email + "&msg=" + data.msg;
+
+
+			$(".txt-name").val("");
+			$(".txt-email").val("");
+			$(".txt-msg").val("");			
+
+			$.ajax({
+				url: "mail/ajaxsubmit.php",
+				type: "POST",
+				data: dataString,
+				dataType: "jsonp",
+				callback: "cb"
+			}).done( function(message) {
+				console.log(message.responseText);
+				setEmailResponse(JSON.parse(message.responseText).code);	
+				
+
+			}).fail( function(error) {
+				console.log(error.responseText);						
+				setEmailResponse(JSON.parse(error.responseText).code);					
+			});
+
+		});
+
+
+
 
 		resonsiveProjectContent();
 
@@ -203,23 +225,6 @@ $(function() {
 
 	getPageContents();
 	detectDeviceType();
-
-	// $("#emailSend").on("click", function(){
-	// 	alert("clicked");
-		// $.ajax({
-		// 	type:"POST",
-		// 	url:"http://localhost:8888/MAMP/mail/mail.php",
-		// 	dataType: "jsonp",
-		// 	success: function(result){
-		// 		alert(result);
-		// 	}
-
-		// 	}).done(function(data){
-		// 		 console.log(data);
-		// 	}).fail(function(data){ 
-		// 		console.log(data);
-		// 	});
-	// });
 
 });
 

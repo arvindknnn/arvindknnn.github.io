@@ -9,6 +9,7 @@
   <title>My AngularJS App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles/vendor/bootstrap-3.2.0/bootstrap.css">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/app.css">
@@ -16,7 +17,30 @@
   
 </head>
 <body  ng-controller="appctrl">
-  <header class="page-header">
+
+<div class="hidden-md hidden-lg" style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; height: 100%; width: 100%; background-color: (158, 158, 158, 0.46)">
+
+
+        <header class="app-header app-header-sm container-fluid">
+
+          <div style="height: 150px; background-color: #940431; color: #ffffff;" class="row">
+            <div style=" height: 100%;" class="col-sm-6 col-xs-6">
+              <img src="/images/ak-sm.jpeg" alt="Smiley face" class="img-circle" style="margin:8px 0px;">      
+            </div>      
+            <h3 class="col-sm-6 col-xs-6">Arvind Kannan</h3>
+              <h5 class="col-xs-6 col-sm-6">Frontend Developer</h5>       
+
+          </div>
+
+          <div class="row">
+            <span class="col-sm-12">
+              I appreciate that you came to checkout this demo. But the slider widget and the demo are built for bigger devices. Please check it out on laptop / desktop and let me know what you think!
+            </span>
+          </div>  
+        </header>
+</div>
+<div class="hidden-xs hidden-sm">
+   <header class="page-header">
     <h1>Slider Demo</h1>    
   </header> 
   <div>
@@ -87,9 +111,14 @@
   
 </footer>
   <script src="script/angular.js"></script>
+  <script src="/scripts/vendor/jquery-2.1.0/jquery.js"></script>
+  <script async="" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>     
+
+
   <!-- <script src="bower_components/angular-route/angular-route.js"></script> -->
   <script src="dependencies/slider/akslider.js"></script>
-  <script src="script/app.js"></script>
+  <script src="script/app.js"></script> 
+</div>
 </body>
 </html>
 
