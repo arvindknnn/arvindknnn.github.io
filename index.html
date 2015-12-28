@@ -1,110 +1,192 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-  		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Arvind Kannan</title>
-		<link rel="stylesheet" href="styles/vendor/bootstrap-3.2.0/bootstrap.css">
-		<link rel="stylesheet" href="styles/css/main.css">	
-	</head>	
-	<body>
+<head>
+  <meta content="initial-scale=1.0, user-scalable=no" name="viewport">
+  <meta charset="utf-8">
 
-		<!-- MOBILE HEADER-->
-		<div class="hidden-md hidden-lg">
+  <title>AK's Custom Location Search</title>
+<!--   <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="images/favicon.ico" rel="icon" type="image/x-icon"> -->
+  <link rel="stylesheet" href="http://css-spinners.com/css/spinner/ball.css" type="text/css">
+  <link href="css/thirdparty/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/mapstyles.css" rel="stylesheet" type="text/css">
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <script src="scripts/thirdparty/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="scripts/thirdparty/knockout-3.3.0.js" type="text/javascript"></script>
+  <script src="scripts/thirdparty/ko-mapping-2.4.1.js" type="text/javascript"></script>
+</head>
 
-				<header class="app-header app-header-sm container-fluid">
+<body>
+  <form data-bind="visible: mapLoaded">
+    <input class="controls ml-searchbox hidden" data-bind="textInput: searchString" id="pac-input" placeholder="Search for a location..." type="text">
+  </form>
 
-					<div style="height: 150px; background-color: #940431; color: #ffffff;" class="row">
-						<div style=" height: 100%;" class="col-sm-6 col-xs-6">
-							<img src="images/ak-sm.jpeg" alt="Smiley face" class="img-circle" style="margin:8px 0px;">			
-						</div>			
-						<h3 class="col-sm-6 col-xs-6">Arvind Kannan</h3>
-							<h5 class="col-xs-6 col-sm-6">Frontend Developer</h5>				
+  <!-- Section for Device Type Detection -->
+  <div id"detect-device">
+    <div id="detect-xs-device" class="visible-xs-inline"></div>
+    <div id="detect-sm-device" class="visible-sm-inline"></div>
+    <div id="detect-md-device" class="visible-md-inline"></div>
+    <div id="detect-lg-device" class="visible-lg-inline"></div>
+  </div>
+  <!-- END Section for Device Type Detection -->
 
-					</div>
-				</header>					
-				<div class="container">
-					<div class="row">
+ <!--  </section> -->
+ <section class="map-container">
 
-					<p class="col-xs-12 col-sm-12">I am a highly motivated frontend developer, passionate about building user interface that not only delivers functionality but is intuitive, interactive and pleasing to the user. I firmly believe that apps or websites that give precedence to brains over beauty belong in 1990s. One can never tell beauty from brains when looking at a great website!</p>
-					<p class="col-xs-12 col-sm-12">German Cars, French Cuisine and Japanese Business Ethics - All of these have one thing in common - Fantastic inner stuff presented in a much more sophisticated way. And that's how I believe, an application should be built too..</p>						
-					</div>				
-				</div>
-			
-		</div>
+ <!-- Section for Medium and Large Devices -->
 
-		<!-- END MOBILE HEADER-->
+   <div class="search-results-pane hidden-sm hidden-xs" data-bind="css: getPanelClass">
+    <div class="logo-wrapper" data-bind="css: getPanelClass">
+      <img alt="App Logo" src="images/logo.png" class="app-logo img-responsive">
+      <div class="results-filter filter-hidden" data-bind="css: getFilterClass">
+        <input type="text" placeholder="filter" id="result-filter-text" data-bind="value: filterPlaceString, valueUpdate: 'afterkeydown'" >
+      </div>
 
-		<header class="app-header hidden-xs hidden-sm">
-			<div style="display: flex; justify-content: center; height: 250px; background-color: #940431; color: #ffffff;">
-				<div style="width: 25%; height: 100%; position: relative; float: left; display: flex; justify-content: center">
-					<img src="images/ak.jpeg" alt="Smiley face" class="img-circle img-responsive" style="margin:8px 0px;">			
-				</div>
-				<div style="width: 75%; height: 100%; position: relative; float: left; padding: 25px">
-					<h3>Arvind Kannan</h3>
-					<h5>Frontend Developer</h5>
-					<p>I am a highly motivated frontend developer, passionate about building user interface that not only delivers functionality but is intuitive, interactive and pleasing to the user. I firmly believe that apps or websites that give precedence to brains over beauty belong in 1990s. One can never tell beauty from brains when looking at a great website!</p>
-					<p>German Cars, French Cuisine and Japanese Business Ethics - All of these have one thing in common - Fantastic inner stuff presented in a much more sophisticated way. And that's how I believe, an application should be built too..</p>
-				</div>
-			</div>
-		</header>
+    </div>
+    <div class="results-container" data-bind="template: { name: 'results-template', foreach: filteredPlaces }">        
+    </div>   
+  </div> 
 
-		<div class="app-bottom-section">
-		<div class="nav-container">
-			<nav class="navbar navbar-default app-nav ">
-				<div class="container-fluid">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    	<div class="navbar-header">
-			      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-collapsible-navbar" aria-expanded="false">
-			        		<span class="sr-only">Toggle navigation</span>
-			        		<span class="icon-bar"></span>
-			        		<span class="icon-bar"></span>
-			        		<span class="icon-bar"></span>
-			      		</button>
-			    	</div>		    
-				    <div class="collapse navbar-collapse" id="app-collapsible-navbar">
-				    	<ul class="nav navbar-nav">		        
-					        <li class="active">
-					        	<a href="#resume" id="resumeLink" class="nav-link" data-page="resumeDiv">
-					        		Resume
-					        	</a>
-					        </li>					        
-					        <li>
-					        	<a href="#projects" id="projectsLink" class="nav-link" data-page="projectsDiv">
-					        		Projects
-					        	</a>      	
-					        </li>
-					        <li>
-					        	<a href="#contact" id="contactLink" class="nav-link" data-page="contactDiv">
-					        		Contact
-					        	</a>
-					        </li>
-				    	</ul>
-				    </div>
-			  	</div>
-			</nav>			
-		</div>
+ <!-- END Section for Medium and Large Devices -->
 
-	<!-- MAIN BODY-->
-		<div id="bodyDiv" class="bodyDiv"></div>
+  <div id="map">
+    <div data-bind="{ifnot: mapLoaded}" class="wait-spinner-wrapper">
+      <div class="ball-loader wait-spinner"> 
+        Loading…       
+      </div>
+      <div class="wait-spinner-text">
+        
+        <span style="margin-left: 25%">Waiting for your current location...</span> <br/>
+        <span> Unless you want to see the bouncing ball forever, please enable location sharing in your browser settings...</span>
+      </div>
+    </div>
+  </div>   
+ </section>
 
+ <!-- Section for Mobile Devices -->
 
-	<!--END MAIN BODY-->
+  <section class="search-list hidden hidden-md hidden-lg">
+    <div data-bind="if: searchString().length && googlePlaces">
+      <button aria-controls="searchResultsContainer" aria-expanded="false" class="btn btn-primary btn-search-results" data-target="#searchResultsContainer" data-toggle="collapse" type="button">
+        <span data-bind="text: resultsLen">      
+        </span> 
+          Search Result(s) Found
+      </button>
+    </div>
+  </section>
 
-	<!--DEVICE TYPE DETECTION-->
-	<div class="device-detective">
-		<div class="hidden-xs device"></div>
-		<div class="hidden-sm device"></div>
-		<div class="hidden-md device"></div>
-		<div class="hidden-lg device"></div>
-	</div>
-	<!--END DEVICE TYPE DETECTION-->
+  <div class="collapse search-results-container hidden-md hidden-lg" id="searchResultsContainer">
+    <div class="well" data-bind="template: { name: 'results-template', if: searchString().length && googlePlaces,foreach: googlePlaces }">
+    </div>
+  </div>
 
+  <!-- END Section for Mobile Devices -->
 
-		<script src="scripts/vendor/jquery-2.1.0/jquery.js"></script>
-		<script src="scripts/vendor/jquery-ui-1.10.4.custom/jquery-ui.js"></script>
-		<script src="scripts/vendor/jquery-scrollTo.js"></script>		
-  		<script async="" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 		
-		<script src="scripts/resume-Controller.js"></script>
-	</body>
+  <!-- Modal -->
+
+  <div aria-labelledby="locInfoModalLabel" class="modal fade locInfoModal"  id="locInfoModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">
+              &times;
+            </span>
+          </button>
+          <div>
+            <img alt="Icon" class="img-responsive loc-icon" data-bind="attr:{ src: modalHeader.icon()}">
+            <h4 class="modal-title" data-bind="text: modalHeader.title()" id="locInfoModalLabel">
+            </h4>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="tab-yelp active" role="presentation">
+                <a aria-controls="Yelp" data-toggle="tab" href="#yelp" role="tab">
+                  Yelp
+                </a>
+              </li>
+              <li class="tab-wiki" role="presentation">
+                <a aria-controls="wiki" data-toggle="tab" href="#wiki" role="tab">
+                  Wikipedia
+                </a>
+              </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active in fade" id="yelp" role="tabpanel">
+                <div class="tab-child-wide yelp-fallback" data-bind="if: modalContent.yelp.error">
+                  <span data-bind="text: modalContent.yelp.fallback">                  
+                  </span>
+                </div>
+                <div data-bind="ifnot: modalContent.yelp.error">
+                  <div class="tab-child">
+                    <img alt="Location Image" class="yelp-img img-responsive" data-bind="attr:{ src: modalContent.yelp.image}">
+                  </div>
+                  <div class="tab-child yelp-location" data-bind="html: modalContent.yelp.address">                  
+                  </div>
+                  <div class="tab-child-wide yelp-rating">
+                    <div class="yelp-rating">
+                      <img alt="Yelp Rating Image" class="img-responsive" data-bind="attr:{src: modalContent.yelp.ratingImg}">
+                      <span> 
+                        Based on 
+                      </span>
+                      <span data-bind="text: modalContent.yelp.totalReviews">                      
+                      </span>
+                    </div>
+                    <div style="margin: 5px 0px;">
+                      <img alt="Yelp Logo" class="img-src loc-icon" src="images/yelp.png">
+                      <a target="new" data-bind="attr:{href: modalContent.yelp.url}" style="position: relative;left: 5px;top: 3px;">
+                        More on Yelp.com!
+                      </a>                
+                    </div>              
+                    <div class=" yelp-rating">
+                      <img alt="Yelp Reviewer Image" class="img-responsive" data-bind="attr:{src: modalContent.yelp.snippetImg}">
+                      <div data-bind="text: modalContent.yelp.snippetTxt">                      
+                      </div>                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" data-bind="html:modalContent.wiki()" id="wiki" role="tabpanel">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal" type="button">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- END Modal -->
+
+  <script id="results-template" type="text/html">
+  <div data-bind="click:$parent.getPlaceInfo,  event:{mouseout: function(data,event){$parent.handleResultHover(data,event,$index)}, mouseover: function(data,event){$parent.handleResultHover(data,event,$index)}},mouseoutBubbling: false, mouseoverBubbling: false, css: itemCss ">
+    <div class="search-result-data" data-bind="" data-toggle="modal" data-target="#locInfoModal">
+      <img data-bind="attr:{ src: icon}" class="img-responsive loc-icon" alt="Icon">
+      <div class='icon-container'>
+        <h4 data-bind="text: name">
+        </h4>
+        <div data-bind="text: vicinity">
+        </div>
+      </div>
+    </div>
+   </div> 
+  </script> 
+  <script src="scripts/views/maps.js"></script> 
+  <script src="scripts/service.js"></script>
+  <!--<script src="scripts/views/locinfo.js"></script>  -->
+  <script async src="scripts/thirdparty/jquery.jsonp-2.4.0.min.js" type="text/javascript"></script>
+  <script async src="node_modules/oauth-signature/dist/oauth-signature.js" type="text/javascript"></script> 
+  <script src="scripts/model/appModel.js"></script> 
+  <script src="scripts/app.js"></script>
+  <script async="" defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=app.init"></script>   
+</body>
 </html>
