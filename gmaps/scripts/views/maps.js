@@ -51,9 +51,7 @@ var app = app || {};
       // ko.mapping.fromJS(self.places, app.model.maps.places);
 
             ko.mapping.fromJS(self.places, app.model.googlePlaces);
-            app.model.resultsLen(self.resultsLength);     
-
-            
+            app.model.resultsLen(self.resultsLength);            
             
           }        
         });
@@ -66,10 +64,6 @@ var app = app || {};
       $("#result-filter-text").keyup(function(){
         app.model.filteredInput(false);
       });
-  
-
-
-
   }
 
     self.renderMap = function(placesData, filtered) {
@@ -139,6 +133,7 @@ var app = app || {};
         
       });
  
+    app.model.mapLoaded(true);
     return true;
   }; 
 

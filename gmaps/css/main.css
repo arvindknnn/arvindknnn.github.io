@@ -44,15 +44,9 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-/*    left: 40%;
-    top: 35%;
-*/
 }
 
 .wait-spinner {
-    /*margin-top: 40%;*/
-    /*left: 34%;*/
-    /*left: 45%;*/
     position: absolute !important;
 
 }
@@ -61,9 +55,10 @@ header {
 	font-size: medium;
     color: #fa4b2a;
     z-index: 1;
-    /*top: 53%;*/
-    /*position: absolute;*/
-    /*left: 40%;*/
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .gps-icon-sm {
@@ -139,8 +134,7 @@ header {
 
 .search-section {
 	position: absolute;
-	top: 100px;
-	/*margin-left: 30px;*/
+	top: 100px;	
 	z-index: 1000;
 }
 
@@ -152,9 +146,7 @@ header {
     background-color: #ffffff;
     overflow-y: auto;
     -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
-    transition: width 1s;
-
-    /*display:none;*/
+    transition: width 1s;    
  }   
 
 .side-panel-expand {
@@ -207,8 +199,7 @@ header {
 }
 
 .ml-searchbox {
-    top: 15px !important; 
-    /*left: 25px !important; */
+    top: 15px !important;     
     padding: 7px !important; 
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -243,8 +234,7 @@ header {
 	border-color: #fa4b2a !important;
 
 	color: #ffffff !important;
-    width: 97% !important; 
-	/*left: 5% !important;*/
+    width: 97% !important; 	
 	height: 50px;
 	margin-left: 5px !important;
     padding: 7px !important; 
@@ -270,11 +260,12 @@ header {
 	    width: 640px !important; 
 		left: 5% !important;
 		margin-left: 0px !important;
+		border-color: #fa4b2a !important;
+
 	}
 
 	.wait-spinner {
-	    margin-top: 16%;
-	    /*left: 34%;*/
+	    margin-top: 16%;	    
 	    left: 45%;
 	}
 
@@ -282,34 +273,28 @@ header {
 
 
 
-.btn-search-results, .collapsed {
+.btn-search-results, .btn-search-results[aria-expanded="false"] {
 	background-color: #fa4b2a !important;
-	border-color: #fa4b2a !important;
-
 	color: #ffffff !important;
 }
 
 
-.btn-search-results:hover, .btn-search-results:active {
-	background-color: #ffffff !important;
-	border-color: #fa4b2a !important;
+.btn-search-results[aria-expanded="true"] {
+	background-color: #ffffff !important;	
 	color: #fa4b2a !important;
 }
 
 .search-results-container {
     position: absolute;
-    bottom: 60px;
-    /*left: 5%;*/
+    bottom: 60px;    
     max-height: 75%;
     width: 100%;
-    background-color: #rgba(255, 255, 255, 0);
-    /*display: flex;*/
+    background-color: #rgba(255, 255, 255, 0);    
     overflow-y: auto;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    /*flex-direction: column;*/
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);    
 }
 
-.search-results-container .well{
+.search-results-container .well {
 	margin-bottom: 0px !important;
 	background-color: #ffffff !important;
 }
@@ -328,15 +313,9 @@ header {
     cursor: pointer;
 }
 
-/*.search-result-data:hover {
-	background-color: #ebebeb;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}*/
 
 .search-result-data-hover {
-	background-color: #ebebeb;
-    /*cursor: pointer;*/
+	background-color: #ebebeb;    
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -358,8 +337,7 @@ header {
 }
 
 .icon-container {
-	padding: 0px 25px;
-	/*width: 60%;*/
+	padding: 0px 25px;	
 }
 
 .modal-title {
@@ -408,20 +386,15 @@ header {
 
 .modal-footer .btn {
 	height: 50px;
-
     width: 100%;
     background-color: #fa4b2a !important;
 	border-color: #fa4b2a !important;
-
 	color: #ffffff !important;
 }
 
 .modal-footer .btn:hover {
 	height: 50px;
-
     width: 100%;
-    background-color: #ffffff !important;
-	border-color: #fa4b2a !important;
-
+    background-color: #ffffff !important;	
 	color: #fa4b2a !important;
 }

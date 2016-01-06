@@ -9,7 +9,7 @@ app.Model = function() {
 
     this.currentItem = ko.observableArray();
     this.searchString = ko.observable("");
-    this.geoPresent = ko.observable("");
+    this.geoPresent = ko.observable(false);
     this.googlePlaces = ko.mapping.fromJS(app.maps.places);
     this.modalContent = { 
         wiki: ko.observable(""), 

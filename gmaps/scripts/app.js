@@ -23,7 +23,15 @@ $(function() {
 
 	function setDefaultLocation(errorCode) {
 	  	if (errorCode.code == 1) {
-			app.geo = false;
+
+
+	  		var coords= {latitude: 37.7749300, longitude: -122.4194200};
+	  		app.maps.geo.lat = coords.latitude;
+	    	app.maps.geo.lng = coords.longitude;
+	    	app.maps.geo.zoom = 15;
+
+
+			app.geo = true;
 			initModel();
 		}    
 	}
