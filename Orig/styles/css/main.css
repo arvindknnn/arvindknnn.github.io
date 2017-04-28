@@ -1,8 +1,9 @@
 body {
 	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
-	font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+/* 	font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif"; */
 	/*margin-left: 15px;	*/
-	font-size: 17px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 17px;	
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
