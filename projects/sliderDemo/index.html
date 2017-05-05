@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="slider" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="slider" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="slider" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="dependencies/slider/slider.css">
+  
+</head>
+<body  ng-controller="appctrl">
+  <header class="page-header">
+    <h1>Slider Demo</h1>    
+  </header> 
+  <div>
+
+    <div class="zoom-demo-wrapper" ng-class="zoomDemo.zoomDemoClass"> 
+      <div class="slider-zoom-container">
+        <ak-slider config="zoomDemo.zoomSliderConf"></ak-slider>                   
+        <!-- <ak-slider config="creditSliderConf"></ak-slider>   -->
+
+        <div class="zoom-left-panel"> Zoomed to:  {{zoomDemo.zoomPercentage}}  % </div>
+        <div class="zoom-left-panel">
+         <p>As much as we all love to see WALL-E <sup>Disney Pixar</sup>, that's not what this is about...</p>
+         <p>Slider built on <a href="https://angularjs.org/" target="new">AngularJS..</a>that's what we're here for! Slide through to see him respond to it.........</p> 
+         <p>The demo uses a custom Angular directive called akSlider ( Named after a great thinker...of course, that's me :/ ). The slider is still in the works at this time. However, this is smooth and versatile enough and almost close MVP. It is a plug and play directive with configurable options. </p>          
+          
+        </div>
+      </div>
+      <div class="image-outer-container">
+        <div class="image-wrapper">
+          <img alt="wall-e image" class="demo-img" src="images/wall-e.jpg" style="transform: scale({{zoomDemo.zoomValue}})">
+        </div>
+      </div>
+    </div>
+  
+    
+  <div class="data-slider-wrapper" ng-class="dataDemo.dataSliderDemoClass">
+    <div class="data-slider-container">
+      <ak-slider config="dataDemo.dataSliderConf"></ak-slider>  
+        <!-- <ak-slider config="zoomSliderConf"></ak-slider>                    -->
+      
+    </div>
+    <div class="data-slider-container">
+      <ak-slider config="creditDemo.creditSliderConf"></ak-slider>  
+    </div>
+  </div>
+</div>
+<footer class="app-footer"> 
+  
+      <div style="margin:25px" ng-click="toggleDemo()">
+        <a href="" >
+          {{footerLink}} 
+        </a>         
+      </div>
+      <div style="width:2px; background: #d3d3d3; height: 20px; margin: 25px"></div>
+      <div style="margin: 20px">
+        More info on 
+        <a href="https://github.com/arvindknnn/AK-Slider" target="new">
+          <img src="images/Octocat.png">
+          GitHub
+        </a>
+      </div>
+  
+</footer>
+  <script src="script/angular.js"></script>
+  <!-- <script src="bower_components/angular-route/angular-route.js"></script> -->
+  <script src="dependencies/slider/akslider.js"></script>
+  <script src="script/app.js"></script>
+    <script src="script/thirdparty/jquery-1.11.3.min.js"></script>
+</body>
+</html>
+
