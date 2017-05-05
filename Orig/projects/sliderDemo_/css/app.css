@@ -1,7 +1,8 @@
 /* app css stylesheet */
 
 body {
-  font-weight: 100;
+  font-weight: 200;
+  font-size: 18px;
 }
 small {
   color: #fa4b2a;
@@ -10,6 +11,7 @@ small {
 .page-header {
     display: flex;
     justify-content: center;
+    width: 100%;
     height: 100px;
     background-color: #940431;
     color: #ffffff;
@@ -21,7 +23,7 @@ small {
   width: 100%;
   flex-direction: column;
   position: absolute;
-  top:  100px;
+  /*top:  100px;*/
   z-index: 500;
   transition: opacity 2s;
   -webkit-transition: opacity 2s; /* Safari */
@@ -38,6 +40,10 @@ small {
 
 }
 
+
+.sliderTrack {
+  margin-top: 18px !important;
+}
 /*.data-slider-wrapper-expanded .slideContainer {
   display: block;
 }
@@ -58,7 +64,7 @@ small {
 .zoom-demo-wrapper {
   display: flex;
   position: absolute;
-  top:  100px;
+  /*top:  100px;*/
   -webkit-transition: opacity 1s; /* Safari */
   transition: opacity 1s;
 }
@@ -74,7 +80,6 @@ small {
   z-index: 10;
 
 }
-
 
 
 /*.slider-zoom-container {
@@ -105,7 +110,7 @@ small {
 }
 
 .app-footer {
-  position: absolute;
+  position: fixed;
   height: 80px;
   background-color: #ebebeb;
   bottom: 0px;

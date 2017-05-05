@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="slider" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="slider" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="slider" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles/vendor/bootstrap-3.2.0/bootstrap.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="dependencies/slider/slider.css">
+  
+</head>
+<body  ng-controller="appctrl">
+
+<div class="hidden-md hidden-lg" style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; height: 100%; width: 100%; background-color: (158, 158, 158, 0.46)">
+
+
+        <header class="app-header app-header-sm container-fluid">
+
+          <div style="height: 150px; background-color: #940431; color: #ffffff;" class="row">
+            <div style=" height: 100%;" class="col-sm-6 col-xs-6">
+              <img src="/images/ak-sm.jpeg" alt="Smiley face" class="img-circle" style="margin:8px 0px;">      
+            </div>      
+            <h3 class="col-sm-6 col-xs-6">Arvind Kannan</h3>
+              <h5 class="col-xs-6 col-sm-6">Frontend Developer</h5>       
+
+          </div>
+
+          <div class="row">
+            <span class="col-sm-12">
+              I appreciate that you came to checkout this demo. But the slider widget and the demo are built for bigger devices. Please check it out on laptop / desktop and let me know what you think!
+            </span>
+          </div>  
+        </header>
+</div>
+<div class="hidden-xs hidden-sm">
+   <header class="page-header">
+    <h1>Slider Demo</h1>    
+  </header> 
+  <div>
+
+    <div class="zoom-demo-wrapper" ng-class="zoomDemo.zoomDemoClass"> 
+      <div class="slider-zoom-container">
+        <ak-slider config="zoomDemo.zoomSliderConf"></ak-slider>                   
+        <!-- <ak-slider config="creditSliderConf"></ak-slider>   -->
+
+        <div class="zoom-left-panel"> Zoomed to:  {{zoomDemo.zoomPercentage}}  % </div>
+        <div class="zoom-left-panel">
+         <p>As much as we all love to see WALL-E <sup>Disney Pixar</sup>, that's not what this is about...</p>
+         <p>Slider built on <a href="https://angularjs.org/" target="new">AngularJS..</a>that's what we're here for! Slide through to see him respond to it.........</p> 
+         <p>The demo uses a custom Angular directive called akSlider ( Named after a great thinker...of course, that's me :/ ). The slider is still in the works from the standpoint of making it absolutely versatile. However, this is smooth and versatile enough to be a little more than MVP. It is a plug and play directive with configurable options. The directive comes with a css file that you can customize. Make it look the way you want!</p>           
+          <i> The best part yet - It's smooth and performs at way, way above 60 fps!</i>
+        </div>
+        <div>
+          <span class="zoom-left-panel">Works on: </span>
+          <img src="images/chrome.png" alt="Google Chrome">
+          <img src="images/edge.png" alt="Microsoft Edge"><br>
+          <span style="margin-left: 50px"><small><i>Firefox specific fixes under development</i></small></span>          
+        </div>
+      </div>
+      <div class="image-outer-container">
+        <div class="image-wrapper">
+          <img alt="wall-e image" class="demo-img" src="images/wall-e.jpg" style="transform: scale({{zoomDemo.zoomValue}}); -webkit-transform: scale({{zoomDemo.zoomValue}})">
+        </div>
+      </div>
+    </div>
+  
+    
+  <div class="data-slider-wrapper" ng-class="dataDemo.dataSliderDemoClass">
+    <div class="data-slider-container">
+      <div style="margin-left: 40px">
+        <p>
+          This slider displays ticks based on data provided in the configuration. This could very well be your app data that came from backend..just link it to your app's scope and you're on your way!
+        </p>   
+        <i> Notice how ticks are distributed according to their values. Somebody had to put them in their places ;)</i>
+      </div> 
+      <ak-slider config="dataDemo.dataSliderConf"></ak-slider>       
+    </div>
+    <div class="data-slider-container">
+      <div style="margin-left: 40px">
+        <p>
+          This one moves the slider to a position set "programmatically" - like person's credit score rating. Go ahead, try to change your credit score!
+        </p>   
+        <i> Notice how ticks are distributed according to their values. Somebody had to put them in their places ;)</i>
+      </div> 
+      <ak-slider config="creditDemo.creditSliderConf"></ak-slider>  
+    </div>
+  </div>
+</div>
+<footer class="app-footer"> 
+  
+      <div style="margin:25px" ng-click="toggleDemo()">
+        <a href="" >
+          {{footerLink}} 
+        </a>         
+      </div>
+      <div style="width:2px; background: #d3d3d3; height: 20px; margin: 25px"></div>
+      <div style="margin: 20px">
+        More info on 
+        <a href="https://github.com/arvindknnn/AK-Slider" target="new">
+          <img src="images/Octocat.png">
+          GitHub
+        </a>
+      </div>
+  
+</footer>
+  <script src="script/angular.js"></script>
+  <script src="/scripts/vendor/jquery-2.1.0/jquery.js"></script>
+  <script async="" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>     
+
+
+  <!-- <script src="bower_components/angular-route/angular-route.js"></script> -->
+  <script src="dependencies/slider/akslider.js"></script>
+  <script src="script/app.js"></script> 
+</div>
+</body>
+</html>
+

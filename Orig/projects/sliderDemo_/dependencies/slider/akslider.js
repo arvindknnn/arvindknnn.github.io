@@ -53,7 +53,75 @@ angular.module('slider', ['template/slider/akslider.html'])
 
 			 // scope.sliderticksclass = (sliderConf.displayTicks) ? ticks-visisble : ticks-hidden;
 			 
+			function GetError (type) {
 
+				switch(type){
+					case 1:
+						this.message = "config.model should be provided for config.type = data";
+						this.errorType = "Config Error";
+						break;
+					case 2:
+						this.message = "config.min, config.max and config.step should be provided for config.type = range";
+						this.errorType = "Config Error";
+						break;						
+	
+				}
+				return {type: this.errorType, message: this.message};
+			}
+
+	 		function calcCurrentPos (eventPos) {
+	 			var ticksLength = scope.tickWidth.length,
+	 				position = {};
+	 			
+	 			// Check if the slider slides to below left bound and reset it
+	 				
+	 			if (eventPos < scope.tickWidth [0]) {
+	 				position.currentPos = scope.tickWidth [0];
+	 				position.dataPos = scope.tickWidth [0];
+
+	 			}
+
+	 			// Check if the slider slides to beyond right bound and reset it
+
+	 			else if (eventPos > scope.tickWidth [ticksLength - 1]) {
+	 				position.currentPos = scope.tickWidth[ticksLength - 1];
+	 				position.dataPos = scope.tickWidth[ticksLength - 1];
+
+	 			}
+
+	 			// Check if the slider is dropped between two ticks. If beyond midway between two ticks, 
+	 			// drop at higher tick. If below midway between two ticks, drop at lower tick
+
+	 			else {
+					for (var index = 0; index < ticksLength; index++) {
+		 				if ((eventPos - 30) < scope.tickWidth[index]) {
+		 					if ((eventPos - 30) > ((scope.tickWidth[index -1]) + ((scope.tickWidth[index] - (scope.tickWidth[index -1])) / 2)))	{
+		 						// scope.movex = scope.tickWidth[index] + "px";
+		 						position.currentPos = scope.tickWidth[index];
+	 							position.dataPos = scope.tickWidth[index];
+
+		 						break;			 						
+		 					}
+		 					else {
+		 						// scope.movex = scope.tickWidth[index - 1] + "px";
+		 						position.currentPos = scope.tickWidth[index - 1];
+		 						position.dataPos = scope.tickWidth[index - 1];
+
+		 						break;	
+		 					}			 				
+		 				}			 				
+		 			}	
+	 			}	 		
+	 			return position;
+	 		}
+
+	 		function callbackCaller(eventPos) {
+	 			if (eventPos < 0 ) { eventPos = 0;};
+	 			if (eventPos >= scope.elemWidth) { eventPos = scope.elemWidth;}
+	 			scope.returnToCallback.val = (eventPos * (sliderConf.max - sliderConf.min)/scope.elemWidth) + sliderConf.min;
+	 			scope.returnToCallback.slidePos = scope.movex;
+	 			 sliderConf.callback(scope.returnToCallback);
+	 		}	 		
 			 
 			
 
@@ -87,24 +155,6 @@ angular.module('slider', ['template/slider/akslider.html'])
 		 	 	sliderConf.max = Math.max.apply(Math, scope.model);
 
 			 }
-
-
-
-			function GetError (type) {
-
-				switch(type){
-					case 1:
-						this.message = "config.model should be provided for config.type = data";
-						this.errorType = "Config Error";
-						break;
-					case 2:
-						this.message = "config.min, config.max and config.step should be provided for config.type = range";
-						this.errorType = "Config Error";
-						break;						
-	
-				}
-				return {type: this.errorType, message: this.message};
-			}
 
 
 		 	scope.elemWidth = elem[0].firstElementChild.offsetWidth - 40;
@@ -271,59 +321,9 @@ angular.module('slider', ['template/slider/akslider.html'])
 		 		// scope.generateTicks();
 
 
-		 		function calcCurrentPos (eventPos) {
-		 			var ticksLength = scope.tickWidth.length,
-		 				position = {};
-		 			
-		 			// Check if the slider slides to below left bound and reset it
-		 				
-		 			if (eventPos < scope.tickWidth [0]) {
-		 				position.currentPos = scope.tickWidth [0];
-		 				position.dataPos = scope.tickWidth [0];
 
-		 			}
 
-		 			// Check if the slider slides to beyond right bound and reset it
 
-		 			else if (eventPos > scope.tickWidth [ticksLength - 1]) {
-		 				position.currentPos = scope.tickWidth[ticksLength - 1];
-		 				position.dataPos = scope.tickWidth[ticksLength - 1];
-
-		 			}
-
-		 			// Check if the slider is dropped between two ticks. If beyond midway between two ticks, 
-		 			// drop at higher tick. If below midway between two ticks, drop at lower tick
-
-		 			else {
-						for (var index = 0; index < ticksLength; index++) {
-			 				if ((eventPos - 30) < scope.tickWidth[index]) {
-			 					if ((eventPos - 30) > ((scope.tickWidth[index -1]) + ((scope.tickWidth[index] - (scope.tickWidth[index -1])) / 2)))	{
-			 						// scope.movex = scope.tickWidth[index] + "px";
-			 						position.currentPos = scope.tickWidth[index];
-		 							position.dataPos = scope.tickWidth[index];
-
-			 						break;			 						
-			 					}
-			 					else {
-			 						// scope.movex = scope.tickWidth[index - 1] + "px";
-			 						position.currentPos = scope.tickWidth[index - 1];
-			 						position.dataPos = scope.tickWidth[index - 1];
-
-			 						break;	
-			 					}			 				
-			 				}			 				
-			 			}	
-		 			}	 		
-		 			return position;
-		 		}
-
-		 		function callbackCaller(eventPos) {
-		 			if (eventPos < 0 ) { eventPos = 0;};
-		 			if (eventPos >= scope.elemWidth) { eventPos = scope.elemWidth;}
-		 			scope.returnToCallback.val = (eventPos * (sliderConf.max - sliderConf.min)/scope.elemWidth) + sliderConf.min;
-		 			scope.returnToCallback.slidePos = scope.movex;
-		 			 sliderConf.callback(scope.returnToCallback);
-		 		}
 
 		} catch(e){
 			 	
@@ -340,8 +340,8 @@ angular.module("template/slider/akslider.html", []).run(["$templateCache", funct
 		// '<div class="slideContainer cursor-default" ng-mouseup= "sliderUp($event)" ng-mouseleave="sliderUp($event)" ng-class="ngslideContainer"> \n' +
 		// '<div class="sliderGuide" ng-show="config.displayguide"> {{movex}} <div> \n' +
 		'<div id="__sliderTrack" class="sliderTrack" ng-click="slideTo($event, 500)"> \n' +
-		'<div style="height: 100%; width: {{ trackBarWidth}}; background-color: blue; transition: width {{trackTransformSpeed}} "></div> \n' +
-		'<div class="draggable" ng-mousedown="sliderDown($event)" style="transform: translateX({{movex}}) translateZ(100px); transition: transform {{transformSpeed}}ms" ng-class="ngsliderBall"></div> \n' +
+		'<div style="height: 100%; width: {{ trackBarWidth}}; background-color: blue; transition: width {{trackTransformSpeed}}; -webkit-transition: width {{trackTransformSpeed}} "></div> \n' +
+		'<div class="draggable" ng-mousedown="sliderDown($event)" style="transform: translateX({{movex}}) translateZ(100px); -webkit-transform: translateX({{movex}}) translateZ(100px); transition: transform {{transformSpeed}}ms; -webkit-transition: transform {{transformSpeed}}ms" ng-class="ngsliderBall"></div> \n' +
 		'</div> \n' +
 		'<div class="sliderTicks"> \n' +
 		'<div ng-repeat="tik in data track by $index" style="position: absolute; float: left; left: {{tik.width}}%" ng-show= "config.displayticks" ng-click="slideTo($event, 500)"> <span style="cursor:pointer">{{tik.value}} </span></div> \n' +
