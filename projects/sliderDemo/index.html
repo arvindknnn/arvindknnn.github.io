@@ -30,8 +30,8 @@
         <div class="zoom-left-panel">
          <p>As much as we all love to see WALL-E <sup>Disney Pixar</sup>, that's not what this is about...</p>
          <p>Slider built on <a href="https://angularjs.org/" target="new">AngularJS..</a>that's what we're here for! Slide through to see him respond to it.........</p> 
-         <p>The demo uses a custom Angular directive called akSlider ( Named after a great thinker...of course, that's me :/ ). The slider is still in the works at this time. However, this is smooth and versatile enough and almost close MVP. It is a plug and play directive with configurable options. </p>          
-          
+         <p>The demo uses a custom Angular directive called akSlider ( Named after a great thinker...of course, that's me :/ ). The slider is still in the works from the standpoint of making it absolutely versatile. However, this is smooth and versatile enough to be a little more than MVP. It is a plug and play directive with configurable options. </p>          
+          <i> The best part yet - It's smooth and performs at way, way above 60 fps!</i>
         </div>
       </div>
       <div class="image-outer-container">
@@ -44,11 +44,21 @@
     
   <div class="data-slider-wrapper" ng-class="dataDemo.dataSliderDemoClass">
     <div class="data-slider-container">
-      <ak-slider config="dataDemo.dataSliderConf"></ak-slider>  
-        <!-- <ak-slider config="zoomSliderConf"></ak-slider>                    -->
-      
+      <div style="margin-left: 40px">
+        <p>
+          This slider displays ticks based on data provided in the configuration. This could very well be your app data that came from backend..just link it to your app's scope and you're on your way!
+        </p>   
+        <i> Notice how ticks are distributed according to their values. Somebody had to put them in their places ;)</i>
+      </div> 
+      <ak-slider config="dataDemo.dataSliderConf"></ak-slider>       
     </div>
     <div class="data-slider-container">
+      <div style="margin-left: 40px">
+        <p>
+          This one moves the slider to a position set "programmatically" - like person's credit score rating. Go ahead, try to change your credit score!
+        </p>   
+        <i> Notice how ticks are distributed according to their values. Somebody had to put them in their places ;)</i>
+      </div> 
       <ak-slider config="creditDemo.creditSliderConf"></ak-slider>  
     </div>
   </div>
@@ -74,7 +84,5 @@
   <!-- <script src="bower_components/angular-route/angular-route.js"></script> -->
   <script src="dependencies/slider/akslider.js"></script>
   <script src="script/app.js"></script>
-    <script src="script/thirdparty/jquery-1.11.3.min.js"></script>
 </body>
 </html>
-
